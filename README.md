@@ -128,8 +128,8 @@ I have chosen the one that was easiest for me to implement. It has a time comple
 - Recursively divide the set of points horizontally into two subset, base case: n <= 3 in CCW order
 - Merging step: merge two sub hulls together by finding an upper and a lower bridge (more or less the hard part)
 
-![Kirkpatrick-Seidel simple](img/kirkpatrick_simple.gif)
-![Kirkpatrick-Seidel circular pattern](img/kirkpatrick_circular.gif)
+![Kirkpatrick-Seidel simple](img/kirkpatrickseidel_simple.gif)
+![Kirkpatrick-Seidel circular pattern](img/kirkpatrickseidel_circular.gif)
 
 ---
 
