@@ -24,8 +24,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
   - Divide the space into two regions separated by the line through $p$ and $q$
   - If one of the regions does not contain any points, the segment through $p$ and $q$ belongs to $\mathcal{CH}$
 
-![Brute-force simple](img/bruteforce_simple.gif)
-![Brute-force circular pattern](img/bruteforce_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Brute-force simple](img/bruteforce_simple.gif) | ![Brute-force circular pattern](img/bruteforce_circular.gif) |
 
 ---
 
@@ -46,8 +47,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
   - Push $P_i$ onto the stack
 - The stack now contains $\mathcal{CH}$
 
-![Graham Scan simple](img/graham_simple.gif)
-![Graham Scan circular pattern](img/graham_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Graham Scan simple](img/graham_simple.gif) | ![Graham Scan circular pattern](img/graham_circular.gif) |
 
 ---
 
@@ -67,8 +69,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
   - Stop if $P_i = P_0$
   - Add $P_i$ to the current set of convex hull points
 
-![Jarvis March simple](img/jarvis_simple.gif)
-![Jarvis March circular pattern](img/jarvis_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Jarvis March simple](img/jarvis_simple.gif) | ![Jarvis March circular pattern](img/jarvis_circular.gif) |
 
 ---
 
@@ -85,8 +88,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
 - Only points outside the triangle can be part of $\mathcal{CH}$
 - Recursively repeat from step 2 with each leg of the triangle, base case: empty set of points
 
-![QuickHull simple](img/quickhull_simple.gif)
-![QuickHull circular pattern](img/quickhull_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![QuickHull simple](img/quickhull_simple.gif) | ![QuickHull circular pattern](img/quickhull_circular.gif) |
 
 ---
 
@@ -112,8 +116,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
     - Push $P_i$ onto the stack
 - Combine lower and upper hull
 
-![Andrew's monotone chain simple](img/monotonchain_simple.gif)
-![Andrew's monotone chain circular pattern](img/monotonchain_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Andrew's monotone chain simple](img/monotonchain_simple.gif) | ![Andrew's monotone chain circular pattern](img/monotonchain_circular.gif) |
 
 ---
 
@@ -128,8 +133,9 @@ I have chosen the one that was easiest for me to implement. It has a time comple
 - Recursively divide the set of points horizontally into two subset, base case: n <= 3 in CCW order
 - Merging step: merge two sub hulls together by finding an upper and a lower bridge (more or less the hard part)
 
-![Kirkpatrick-Seidel simple](img/kirkpatrickseidel_simple.gif)
-![Kirkpatrick-Seidel circular pattern](img/kirkpatrickseidel_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Kirkpatrick-Seidel simple](img/kirkpatrickseidel_simple.gif) | ![Kirkpatrick-Seidel circular pattern](img/kirkpatrickseidel_circular.gif) |
 
 ---
 
@@ -149,5 +155,6 @@ I have chosen the one that was easiest for me to implement. It has a time comple
   - If the starting point could not be reached within $m$ steps, start all over again with $m \leftarrow m \cdot m$
   - If the starting point could be reached again, the overall convex hull has been found
 
-![Chain simple](img/chan_simple.gif)
-![Chain circular pattern](img/chan_circular.gif)
+| Simple Test Set | Circular Pattern |
+| :-------------: | :--------------: |
+| ![Chain simple](img/chan_simple.gif) | ![Chain circular pattern](img/chan_circular.gif) |
