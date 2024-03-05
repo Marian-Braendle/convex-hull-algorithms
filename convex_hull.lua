@@ -77,7 +77,7 @@ end
 local function getLeftmostPoint(points)
     local res = points[1]
     for _, pt in ipairs(points) do
-        if pt.x < res.x then
+        if pt.x == res.x and pt.y > res.y or pt.x < res.x then
             res = pt
         end
     end
