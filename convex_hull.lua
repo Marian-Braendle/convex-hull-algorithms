@@ -126,15 +126,15 @@ local function partitionByGroupSize(points, groupSize)
 end
 
 ---Partition points into two sets separated by line through p1 and p2
-local function partitionByLine(points, p1, p2, ignoreColinearPoints)
-    ignoreColinearPoints = ignoreColinearPoints or false
+local function partitionByLine(points, p1, p2, ignoreCollinearPoints)
+    ignoreCollinearPoints = ignoreCollinearPoints or false
     local s1, s2 = {}, {}
     for _, p in ipairs(points) do
         if p ~= p1 and p ~= p2 then
             local o = orientation(p1, p2, p)
             if o > 0 then
                 s1[#s1 + 1] = p
-            elseif o < 0 or not ignoreColinearPoints then
+            elseif o < 0 or not ignoreCollinearPoints then
                 s2[#s2 + 1] = p
             end
         end
@@ -353,7 +353,7 @@ local function jarvisMarch(model, points)
             local checking = points[i]
             if checking ~= current then
                 local turn = orientation(current, next, checking)
-                -- Find the point with the biggest left turn. If 2 points are colinear, use the one furthest away.
+                -- Find the point with the biggest left turn. If 2 points are collinear, use the one furthest away.
                 if turn > 0 or (turn == 0 and (checking - current):sqLen() > (next - current):sqLen()) then
                     next = checking
                 end
@@ -519,7 +519,7 @@ local function kirkpatrickSeidel(model, points)
             end
         end
         local iLowerTangentLeft, iLowerTangentRight = il, ir
-        -- Special case: all points are colinear -> just return sorted union
+        -- Special case: all points are collinear -> just return sorted union
         if iUpperTangentLeft == iLowerTangentLeft and iUpperTangentRight == iLowerTangentRight then
             local hull = L
             for i = 1, #R do hull[#hull+1] = R[i] end
