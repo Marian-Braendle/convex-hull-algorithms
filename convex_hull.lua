@@ -519,10 +519,11 @@ local function kirkpatrickSeidel(model, points)
             end
         end
         local iLowerTangentLeft, iLowerTangentRight = il, ir
-        -- Special case: all points are colinear -> just return union
+        -- Special case: all points are colinear -> just return sorted union
         if iUpperTangentLeft == iLowerTangentLeft and iUpperTangentRight == iLowerTangentRight then
             local hull = L
             for i = 1, #R do hull[#hull+1] = R[i] end
+            table.sort(hull, function(a, b) return a.x == b.x and a.y < b.y or a.x < b.x end) -- Probably, there is a smarter way with less than O(nlog(n))...
             return hull
         end
         vis:cloneView()
