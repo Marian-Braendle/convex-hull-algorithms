@@ -605,35 +605,26 @@ local function chansAlgorithm(model, points)
         end
         return hull_stack
     end
-    local function findTangent(hull, p) -- find rightmost point as seen from p in O(log(n)) time
-        local l, r = 1, #hull
-        local lPrev, lNext = orientation(p, hull[1], hull[#hull]), orientation(p, hull[1], hull[l % #hull + 1])
-        while l < r do -- binary search
-            local c = (l + r) // 2
-            local cCur = orientation(p, hull[l], hull[c])
-            local cPrev = orientation(p, hull[c], hull[(c - 2) % #hull + 1])
-            local cNext = orientation(p, hull[c], hull[(c) % #hull + 1])
-            if cPrev >= 0 and cNext >= 0 then
-                return c
-            elseif ((cCur > 0) and (lNext < 0 or (lPrev * lNext) > 0)) or (cCur < 0 and cPrev < 0) then
-                r = c
-            else
-                l = c + 1
-                lPrev, lNext = -cNext, orientation(p, hull[l], hull[l % #hull + 1])
+    local function findTangent(hull, p) -- find rightmost point as seen from p
+        -- TODO: implement as binary search with O(log(n))
+        for i = 1, #hull do
+            local iPrev, iNext = (i-2) % #hull + 1, i % #hull + 1
+            if orientation(p, hull[iPrev], hull[i]) <= 0 and orientation(p, hull[i], hull[iNext]) > 0 then
+                return i
             end
         end
-        return l
+        _G.error("unreachable")
     end
-    local function lowestSubhullPoint(hulls)
+    local function lowestLeftSubhullPoint(hulls)
         local h, p = 1, 1
         for i = 1, #hulls do
-            local minIndex, minY = 1, hulls[i][1].y
+            local minIndex, minY, minX = 1, hulls[i][1].y, hulls[i][1].y
             for j = 1, #hulls[i] do
-                if hulls[i][j].y < minY then
-                    minIndex, minY = j, hulls[i][j].y
+                if hulls[i][j].y < minY or (hulls[i][j].y == minY and hulls[i][j].x < minX) then
+                    minIndex, minY, minX = j, hulls[i][j].y, hulls[i][j].x
                 end
             end
-            if hulls[i][minIndex].y < hulls[h][p].y then
+            if hulls[i][minIndex].y < hulls[h][p].y or (hulls[i][minIndex].y == hulls[h][p].y and hulls[i][minIndex].x < hulls[h][p].x) then
                 h, p = i, minIndex
             end
         end
@@ -675,7 +666,7 @@ local function chansAlgorithm(model, points)
         local subHullsView = vis.views[#vis.views]
 
         -- Perform gift wrapping starting from lowest point, which is guaranteed to be on overall CH
-        local hull = { lowestSubhullPoint(subHulls) }
+        local hull = { lowestLeftSubhullPoint(subHulls) }
         local res = { subHulls[hull[1].iHull][hull[1].iPoint] }
         for _ = 1, m do
             local p = nextSubhullPoint(subHulls, hull[#hull])
