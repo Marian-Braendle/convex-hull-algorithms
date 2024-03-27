@@ -3,7 +3,8 @@
 This Ipelet implements the most important algorithms found in literature to calculate the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of a given set of points.
 
 For each algorithm, individual views are created with a visualization of the intermediate steps.
-This allows you to use them in a presentation or to generate animations (see below), e.g. with imagemagick.
+This allows you to use them in a presentation or to generate animations from it.
+The animations below have been generated with the [ipe-animate-views](https://github.com/Marian-Braendle/ipe-animate-views) Ipelet.
 
 ## Usage
 
